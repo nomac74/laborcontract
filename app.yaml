@@ -1,0 +1,36 @@
+# 지정된 런타임에서 애플리케이션을 실행합니다. 여기서는 Python 3.9를 사용합니다.
+runtime: python311 
+
+# 애플리케이션의 진입점을 설정합니다. gunicorn은 WSGI HTTP 서버이며, "$PORT"는 환경 변수를 참조하여 포트를 지정하고, "app:app"는 WSGI 애플리케이션의 위치를 나타냅니다.
+entrypoint: gunicorn -b :$PORT app:app 
+
+# 이 애플리케이션의 인스턴스 클래스는 F2입니다.
+instance_class: F2 
+
+# 애플리케이션의 자동 확장 설정입니다.
+automatic_scaling: 
+  # CPU 사용률의 목표치를 65%로 설정합니다.
+  target_cpu_utilization: 0.65 
+
+  # 최소 인스턴스 수를 1로 설정합니다.
+  min_instances: 1 
+
+  # 최대 인스턴스 수를 15로 설정합니다.
+  max_instances: 15 
+
+  # 처리량 사용률의 목표치를 60%로 설정합니다.
+  target_throughput_utilization: 0.6 
+
+# 환경 변수를 설정합니다. 여기서는 포트를 "8080"으로 설정합니다.
+env_variables: 
+  PORT: 8080 
+
+# 런타임 설정입니다. 여기서는 Python의 버전을 3으로 설정합니다.
+runtime_config: 
+  python_version: 3 
+
+# 각 인스턴스의 리소스를 설정합니다. 여기서는 CPU 1개, 메모리 0.5GB, 디스크 크기 10GB를 설정합니다.
+resources: 
+  cpu: 1 
+  memory_gb: 0.5 
+  disk_size_gb: 10
