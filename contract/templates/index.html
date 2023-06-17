@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>표준근로계약서</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script>
+  function adjustContainerHeight() {
+  var container = document.querySelector('.container');
+  var imageContainer = document.querySelector('.image-container');
+
+  var aspectRatio;
+  if (window.innerWidth <= 600) {
+    aspectRatio = 0.5;
+  } else {
+    aspectRatio = 1.9;
+  }
+
+  var containerWidth = container.offsetWidth;
+  var containerHeight = containerWidth * aspectRatio;
+
+  container.style.height = `${containerHeight}px`;
+  imageContainer.style.height = `${containerHeight}px`;
+}
+
+window.addEventListener('resize', adjustContainerHeight);
+window.addEventListener('DOMContentLoaded', adjustContainerHeight);
+  </script>
+
+
+  <style>
+    body {
+      display: grid;
+      grid-template-columns: 4fr 6fr; 
+      grid-template-rows: auto 1fr; /* 추가: 세로 그리드 분할 */
+      gap: 10px;
+      max-width: 900px;
+      margin: auto;
+      height: 120vh;
+      overflow: hidden;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      padding-bottom: 0px;
+      padding-top: 0px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #1565c0; /* 수정: 밑줄 스타일 및 색상 지정 */
+      border-top: 2px solid #1565c0;
+      grid-column: 1 / -1;
+      grid-row: 1;
+      font-size: 40px;
+    }
+
+    .container {
+      box-sizing: border-box; /* 추가 */
+      grid-row: 2; /* 추가: 컨테이너를 두 번째 행에 위치 */
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: 5px;
+      font-family: Arial, sans-serif;
+      border: 1px solid #000;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    .image-container {
+      box-sizing: border-box; /* 추가 */
+      grid-row: 2; /* 추가: 이미지 컨테이너를 두 번째 행에 위치 */
+      background-size: cover;
+      background-position: 0px 1px;
+      max-height: 100vh;
+      border: 1px solid #000;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    .form-group {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      margin-left: 15px;
+      color: rgb(4, 0, 9);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0%;
+    }
+
+    input[type="text"] {
+      width: 90%;
+      padding: 3px;
+      font-size: 16px;
+      margin-bottom: 3px;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .header-container {
+      display: inline-block;
+    }
+
+    .header-underline {
+      border-bottom: 2px solid #1565c0;
+      width: 100%;
+    }
+
+  </style>
+</head>
+<body>
+  <h1 class="header-title"; style="background-color:rgb(202, 208, 221)">Standard Employment Contract™</h1>
+  <div class="container">
+    <form id="contract_form" action="/submit" method="POST">
+      <div class="form-group">
+        <label for="employer_name">1. 회사(고용주) 이름</label>
+        <input type="text" id="employer_name" name="employer_name" required>
+      </div>
+      <div class="form-group">
+        <label for="employee_name">2. 근로자 이름</label>
+        <input type="text" id="employee_name" name="employee_name" required>
+      </div>
+      <div class="form-group">
+        <label for="job_title">3. 담당 업무</label>
+        <input type="text" id="job_title" name="job_title" required>
+      </div>
+      <div class="form-group">
+        <label for="hourly_wage">4. 시간당 임금</label>
+        <input type="text" id="hourly_wage" name="hourly_wage" required>
+      </div>
+      <div class="form-group">
+        <label for="start_hour">5. 출근 시간</label>
+        <input type="text" id="start_hour" name="start_hour" required>
+      </div>
+      <div class="form-group">
+        <label for="end_hour">6. 퇴근 시간</label>
+        <input type="text" id="end_hour" name="end_hour" required>
+      </div>
+      <div class="form-group">
+        <label for="break_time">7. 휴게 시간 (0~4시간; 0.5는 30분)</label>
+        <input type="text" id="break_time" name="break_time" required>
+      </div>
+      <div class="form-group">
+        <label for="weekly_working_days">8. 주당 근무 일수</label>
+        <input type="text" id="weekly_working_days" name="weekly_working_days" required>
+      </div>
+      <div class="form-group">
+        <label for="contract_start">[계약 시작일]</label>
+        <input type="text" id="contract_start" name="contract_start" required>
+      </div>
+      <div class="form-group">
+        <label for="contract_end">[계약 종료일]</label>
+        <input type="text" id="contract_end" name="contract_end" required>
+      </div>
+            <div class="form-group">
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent blue-button">
+              Contract Generation
+          </button>
+      </div>
+      </form>
+      </div>
+      
+      <style>
+      .blue-button {
+          background-color: green !important;
+          color: white !important;
+      }
+</style>
+
+  <div class="image-container"></div>
+  <!-- more script and body elements -->
+      <script>
+        function validateForm() {
+          var employer_name = document.getElementById("employer_name").value;
+          var employee_name = document.getElementById("employee_name").value;
+          var job_title = document.getElementById("job_title").value;
+          var hourly_wage = document.getElementById("hourly_wage").value;
+          var start_hour = document.getElementById("start_hour").value;
+          var end_hour = document.getElementById("end_hour").value;
+          var break_time = document.getElementById("break_time").value;
+          var weekly_working_days = document.getElementById("weekly_working_days").value;
+          var contract_start = document.getElementById("contract_start").value;
+          var contract_end = document.getElementById("contract_end").value;
+
+          if (!employer_name || !employee_name || !job_title || !hourly_wage || !start_hour || !end_hour || !break_time || !weekly_working_days || !contract_start || !contract_end) {
+            alert("모든 필드를 채워주세요.");
+            return false;
+          }
+
+          if (hourly_wage < 9620 || hourly_wage > 20000) {
+          alert("시간당 임금은 9620보다 크고 20000보다 작은 값이어야 합니다.");
+          return false;
+          }
+
+          if (isNaN(hourly_wage) || isNaN(start_hour) || isNaN(end_hour) || isNaN(break_time) || isNaN(weekly_working_days)) {
+            alert("시간당 임금, 출근 시간, 퇴근 시간, 휴게 시간, 주당 근무 일수는 숫자로 입력해야 합니다.");
+            return false;
+          }
+
+          if (start_hour < 0 || start_hour > 24 || end_hour < 0 || end_hour > 24) {
+            alert("출근 시간과 퇴근 시간은 0부터 24 사이의 값이어야 합니다.");
+            return false;
+          }
+
+          if (break_time < 0 || break_time > 4) {
+            alert("휴게 시간은 0부터 4까지의 값이어야 합니다.");
+            return false;
+          }
+
+          return true;
+        }
+
+        var form = document.getElementById("contract_form");
+        form.addEventListener("submit", function (event) {
+          if (!validateForm()) {
+            event.preventDefault();
+
+
+          }
+        });
+      </script>
+  <script src="{{ url_for('static', filename='img.js') }}"></script>
+</body>
+</html>
